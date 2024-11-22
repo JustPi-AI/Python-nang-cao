@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .avatar {
+            width: 200px; /* Adjust the size as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 profile-container">
+        <h2 class="text-center">{{ user.username }}'s Profile</h2>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Profile Information</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ url_for('static', filename=current_user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar"> <!-- Use the user's avatar -->
+                    </div>
+                    <div class="col-md-8">
+                        <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+                        <p class="card-text"><strong>Real Name:</strong> {{ user.real_name }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ user.location }}</p>
+                        <p class="card-text"><strong>About Me:</strong> {{ user.about_me }}</p>
+                        <p class="card-text"><strong>Followers:</strong> {{ user.follower_count }}</p>
+                        <p class="card-text"><strong>Following:</strong> {{ user.following_count }}</p>
+                        {% if followed_by %}
+                            <p class="card-text text-success"><strong>Follow You</strong></p> <!-- Show "Follow You" if this user follows you -->
+                        {% endif %}
+                        <form method="POST">
+                            <button type="submit" class="btn btn-primary">
+                                {% if following %}Unfollow{% else %}Follow{% endif %}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body and Background Styling */
+html, body {
+    background-color: #1b1e2d; /* Màu nền tối */
+    color: #ffffff; /* Màu chữ sáng */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Form and Input Styling */
+.form-group label {
+    color: #f1c40f; /* Label color */
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #2d3250;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    background-color: #3b4261;
+    border-color: #f1c40f;
+    color: #ffffff;
+}
+
+textarea.form-control {
+    background-color: #2d3250;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+/* Avatar Styling */
+img {
+    border-radius: 50%;
+}
+
+/* Card Custom Styling */
+.card {
+    background-color: #2d3250 !important; /* Màu nền cho thẻ */
+    color: #ffffff !important;
+    border: none;
+    border-radius: 8px;
+}
+
+.card-body {
+    background-color: #2d3250;
+}
+
+.card-title {
+    color: #f1c40f;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 16px;
+    color: #cccccc;
+}
+
+/* Button Custom Styling */
+.btn-primary {
+    background-color: #f1c40f !important;
+    color: #252a41 !important;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #d4af37 !important;
+    color: #ffffff !important;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Alert Styling */
+.alert-warning {
+    background-color: #f1c40f;
+    color: #252a41;
+    border-radius: 5px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1b1e2d;
+    color: #bbbbbb;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    border-top: 1px solid #40476d;
+    width: 100%;
+    margin-top: auto;
+}

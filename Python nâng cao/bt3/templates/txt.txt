@@ -1,0 +1,18 @@
+# @app.route('/post/<int:post_id>/comments', methods=['GET', 'POST'])
+# @login_required
+# def comments(post_id):
+#     post = BlogPost.query.get_or_404(post_id)  # Get the blog post
+#     if request.method == 'POST':
+#         content = request.form['content']
+#         new_comment = Comment(content=content, post_id=post.id, user_id=current_user.id)
+#         db.session.add(new_comment)
+#         db.session.commit()
+#         flash('Your comment has been added!')
+#         return redirect(url_for('comments', post_id=post.id))  # Redirect to the comments page
+
+#     # Pagination for comments
+#     page = request.args.get('page', 1, type=int)
+#     per_page = 3  # Number of comments per page
+#     comments = Comment.query.filter_by(post_id=post.id).order_by(Comment.timestamp.desc()).paginate(page=page, per_page=per_page)
+    
+#     return render_template('comments.html', post=post, comments=comments)

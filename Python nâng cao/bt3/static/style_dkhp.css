@@ -1,0 +1,452 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Đảm bảo toàn bộ trang có chiều cao 100% */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Body Styling */
+body {
+    background-color: #f4f5f8;
+    color: #333;
+    display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #1b1e2d;
+    color: #ffffff;
+    padding: 20px;
+    height: 100vh; /* Chiều cao bằng với chiều cao của cửa sổ trình duyệt */
+    position: fixed; /* Cố định sidebar bên trái */
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Thêm cuộn dọc nếu nội dung quá dài */
+    display: flex;
+    flex-direction: column; /* Căn nội dung theo cột */
+    justify-content: space-between; /* Tạo không gian đều giữa các phần */
+}
+
+.sidebar .logo-container {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.logo-container .logo {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f1c40f;
+}
+
+.menu {
+    list-style: none;
+    flex-grow: 1; /* Đẩy menu xuống phía dưới nếu có nội dung khác phía trên */
+}
+
+.menu li a {
+    color: #f1c40f;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.menu li a i {
+    margin-right: 10px;
+}
+
+.menu li a:hover {
+    background-color: #303552;
+    color: #ffffff;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-info p {
+    color: #bbbbbb;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Main Content Styling */
+.content {
+    margin-left: 250px; /* Tạo khoảng cách để nội dung không bị đè lên sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.header-left h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* .header-right .flag {
+    width: 24px;
+    margin-right: 10px;
+} */
+.header-right {
+    display: flex;            /* Use flexbox to align items horizontally */
+    align-items: center;      /* Vertically center the items */
+}
+
+.header-right .username {
+    font-size: 16px;          /* Set the font size */
+    margin-right: 8px;         /* Space between icon and username */
+}
+
+.registration {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.registration h2 {
+    font-size: 20px;
+    color: #b31b1b;
+    margin-bottom: 15px;
+}
+
+/* Form Group Styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.refresh-btn {
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.refresh-btn i {
+    margin-right: 5px;
+}
+
+/* Radio Button Group */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.radio-group label {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Course Table Styling */
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.course-table th, .course-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.course-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+}
+
+.course-table tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+.course-table td {
+    color: #333;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1b1e2d;
+    color: #bbbbbb;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #40476d;
+}
+
+/* Styling for "Môn học bạn đã đăng ký" table */
+.registered-courses {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.registered-courses th, .registered-courses td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.registered-courses th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+}
+
+.registered-courses tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+.registered-courses td {
+    color: #333;
+}
+
+/* Style for the unregister button */
+.unregister-btn {
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.unregister-btn i {
+    margin-right: 5px;
+}
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Ensure full-page height */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Body Styling */
+body {
+    background-color: #f4f5f8;
+    color: #333;
+    display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #1b1e2d;
+    color: #ffffff;
+    padding: 8px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container .logo {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f1c40f;
+}
+
+.menu {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.menu li a {
+    color: #f1c40f;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.menu li a:hover {
+    background-color: #303552;
+    color: #ffffff;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-info p {
+    color: #bbbbbb;
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Main Content Styling */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.header-left h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.registration {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Course Table Styling */
+.registered-courses {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.registered-courses th, .registered-courses td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.registered-courses th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+}
+
+.registered-courses tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+.registered-courses td {
+    color: #333;
+}
+
+/* Style for the unregister button */
+.unregister-btn {
+    background-color: #b31b1b;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.unregister-btn i {
+    margin-right: 5px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1b1e2d;
+    color: #bbbbbb;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    border-top: 1px solid #40476d;
+}
+

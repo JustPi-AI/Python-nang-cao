@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_edit_profile.css') }}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Edit Profile</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <!-- Current Avatar -->
+            <div class="form-group text-center">
+                <label>Current Avatar</label><br>
+                <img src="{{ url_for('static', filename=current_user.avatar.split('/')[-1]) }}" alt="Current Avatar" style="width: 100px; height: 100px;">
+            </div>
+
+            <!-- Real Name -->
+            <div class="form-group">
+                <label for="real_name">Real Name</label>
+                <input type="text" class="form-control" id="real_name" name="real_name" value="{{ real_name }}">
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location">
+            </div>
+
+            <!-- About Me -->
+            <div class="form-group">
+                <label for="about_me">About Me</label>
+                <textarea class="form-control" id="about_me" name="about_me" rows="3">{{ about_me }}</textarea>
+            </div>
+
+            <!-- Change Avatar -->
+            <div class="form-group">
+                <label for="avatar">Change Avatar</label>
+                <input type="file" class="form-control-file" id="avatar" name="avatar">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-warning mt-3">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

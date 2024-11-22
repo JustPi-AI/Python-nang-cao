@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_dkhp.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Đăng ký kế hoạch học tập</title>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Van Lang University Logo" class="logo">
+            <h1>VAN LANG UNIVERSITY</h1>
+        </div>
+        <div class="user-info">
+            <!-- Dùng thông tin người dùng đang đăng nhập -->
+            <img src="{{ url_for('static', filename=current_user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar">
+            <p>{{ current_user.username }}</p>  <!-- Hiển thị tên người dùng -->
+            <p>id: {{ current_user.id }}</p>   <!-- Hiển thị ID người dùng -->
+            <p>Sinh viên</p>
+        </div>
+        <h3>CHỨC NĂNG</h3>
+        <ul class="menu">
+            <li><a href="/home"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="/dangkyhocphan"><i class="fas fa-clipboard-list"></i> Đăng ký học phần</a></li>
+            <li><a href="#"><i class="fas fa-tasks"></i> Đăng ký kế hoạch học tập</a></li>
+            <li><a href="#"><i class="fas fa-search"></i> Tra cứu học phần</a></li>
+            <li><a href="#"><i class="fas fa-balance-scale"></i> Học phần tương đương</a></li>
+            <li><a href="#"><i class="fas fa-history"></i> Lịch sử đăng ký học phần</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <header class="header">
+            <div class="header-left">
+                <h2>ĐĂNG KÝ KẾ HOẠCH HỌC TẬP</h2>
+                <p>NĂM HỌC 2024-2025 - HỌC KỲ HK02</p>
+            </div>
+            <div class="header-right">
+                <span class="username">{{ current_user.username }}</span>
+                <i class="fas fa-user-circle user-icon"></i>
+            </div>
+            
+        </header>
+
+        <section class="registration">
+            <div class="form-group">
+                <label for="program">Chương trình đào tạo:</label>
+                <select id="program">
+                    <option>1. 71K27CNTT_7480201-04 - Trí tuệ Nhân tạo</option>
+                </select>
+                <button class="refresh-btn"><i class="fas fa-sync-alt"></i> Làm mới</button>
+            </div>
+            <div class="radio-group">
+                <label><input type="radio" name="plan" value="outside"> Ngoài kế hoạch</label>
+                <label><input type="radio" name="plan" value="inplan"> Đúng kế hoạch</label>
+            </div>
+
+            <!-- Bảng môn học đăng ký -->
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã học phần</th>
+                        <th>Tên học phần</th>
+                        <th>Số tín chỉ</th>
+                        <th>Đăng ký</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Các môn học có thể đăng ký -->
+                    <tr>
+                        <td>1</td>
+                        <td>232_71ITAI41303_01</td>
+                        <td>Các công cụ và nền tảng cho trí tuệ nhân tạo</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="232_71ITAI41303_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>232_71ITIS30303_01</td>
+                        <td>Quản lý Dự án công nghệ thông tin</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="232_71ITIS30303_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>222_71ITAI40803_01</td>
+                        <td>Nhập môn xử lý ảnh số</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="222_71ITAI40803_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>223_71ITAI40503_01</td>
+                        <td>Trí tuệ nhân tạo ứng dụng</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="223_71ITAI40503_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>211_71ITBS10203_03</td>
+                        <td>Cơ sở lập trình (DKHP_WIN)</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="211_71ITBS10203_03">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>211_71ITBS10103_05</td>
+                        <td>Nhập môn Công nghệ thông tin (DKHP_WIN)</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="211_71ITBS10103_05">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>221_71ITSE30203_01</td>
+                        <td>Lập trình hướng đối tượng</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="221_71ITSE30203_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>221_71ITSE30303_01</td>
+                        <td>Cấu trúc dữ liệu và giải thuật</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="221_71ITSE30303_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>222_71ITDS40203_01</td>
+                        <td>Xác suất thống kê ứng dụng</td>
+                        <td>3 tín</td>
+                        <td>
+                            <form method="POST" action="/dangkyhocphan">
+                                <input type="hidden" name="course_id" value="222_71ITDS40203_01">
+                                <button type="submit">Đăng ký</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+            <!-- Hiển thị thông tin các môn học đã đăng ký -->
+            <h3>Môn học bạn đã đăng ký:</h3>
+            <table class="registered-courses">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã học phần</th>
+                        <th>Tên học phần</th>
+                        <th>Số tín chỉ</th>
+                        <th>Hủy đăng ký</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if registrations %}
+                        {% for registration in registrations %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ registration.code }}</td>
+                                <td>{{ registration.name }}</td>
+                                <td>{{ registration.credits }}</td>  <!-- Access credits directly -->
+                                <td>
+                                    <form method="POST" action="/huydangkyhocphan">
+                                        <input type="hidden" name="course_id" value="{{ registration.code }}">
+                                        <button type="submit" class="unregister-btn"><i class="fas fa-times"></i> Hủy</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" style="text-align: center;">Chưa có môn học nào được đăng ký.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            
+        </section>
+    </main>
+</body>
+</html>
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_home.css') }}">
+    <title>Trang chủ - Van Lang University</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Van Lang University Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Trang chủ</a></li>
+                <li><a href="#">Đăng ký học phần</a></li>
+                {% if current_user.is_authenticated %}
+                    <li>Xin chào, {{ current_user.username }}</li>
+                    <li><a href="{{ url_for('logout') }}">Đăng xuất</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Đăng nhập</a></li>
+                    <li><a href="{{ url_for('register') }}">Đăng ký</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <aside class="sidebar">
+            <h3>Chức năng</h3>
+            <ul class="menu">
+                <li>
+                    <span class="menu-header">Trang cá nhân</span>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('profile') }}">Thông tin cá nhân</a></li>
+                        <li><a href="#">Thông báo <span class="notification-count"></span></a></li>
+                        <li><a href="{{ url_for('register') }}">Tạo tài khoản</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="menu-header">Tra cứu thông tin</span>
+                    <ul class="submenu">
+                        <li><a href="#">Chương trình đào tạo</a></li>
+                        <li><a href="#">Lịch học</a></li>
+                        <li><a href="#">Lịch thi</a></li>
+                        <li><a href="#">Quyết định sinh viên</a></li>
+                        <li><a href="#">Kết quả rèn luyện</a></li>
+                        <li><a href="#">Kết quả học tập</a></li>
+                        <li><a href="#">Tài chính sinh viên</a></li>
+                        <li><a href="#">Xem chi tiết hóa đơn</a></li>
+                        <li><a href="#">Tổng hợp học phí</a></li>
+                        <li><a href="#">Xem phí Ký túc xá</a></li>
+                        <li><a href="#">Học bổng, miễn giảm và trợ cấp</a></li>
+                        <li><a href="#">Xem kết quả đăng ký kế hoạch</a></li>
+                        <li><a href="#">Hồ sơ sinh viên</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="menu-header">Chức năng trực tuyến</span>
+                    <ul class="submenu">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Đăng ký học phần</a></li>
+                        <li><a href="#">Đăng ký kế hoạch học tập theo năm học</a></li>
+                        <li><a href="#">Đăng ký thi lần 2</a></li>
+                        <li><a href="#">Đánh giá điểm rèn luyện</a></li>
+                        <li><a href="#">Xin giấy xác nhận</a></li>
+                        <li><a href="#">Ký túc xá</a></li>
+                        <li><a href="#">Thanh toán học phí</a></li>
+                        <li><a href="#">In giấy khen</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+            <!-- Phần chứa hình ảnh bên phải -->
+        <!-- <div class="image-container">
+            <img src="{{ url_for('static', filename='VLU_Banner.jpg') }}" alt="Van Lang University Image">
+        </div> -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='VLU_Banner.jpg') }}" alt="Van Lang University Image">
+            <div class="overlay"></div>
+            <div class="text-overlay top-left">Đăng Ký Học Phần
+                <p>Chức năng đăng ký môn cho sinh viên</p>
+            </div>
+            <div class="text-overlay bottom-right">Blog
+                <p>Trang Blog cho sinh viên</p>
+            </div>
+            <div class="text-overlay bottom">
+                <p>Đây là trang web cho phép đăng ký môn, tạo tài khoản, đăng nhập, trang blog, bình luận, chỉnh sửa, profile.</p>
+            </div>
+        </div>
+                
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Van Lang University. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for toggle functionality -->
+    <script>
+        document.querySelectorAll('.menu-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const submenu = header.nextElementSibling;
+                if (submenu && submenu.classList.contains('submenu')) {
+                    submenu.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_profile.css') }}">
+    <style>
+        .avatar {
+            width: 200px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 profile-container">
+        <h2 class="text-center">Welcome, {{ username }}!</h2>
+        <p class="text-center">This is your profile page.</p>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Profile Information</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ url_for('static', filename=current_user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar"> <!-- Use the user's avatar -->
+                    </div>
+                    <div class="col-md-8">
+                        <p class="card-text"><strong>Email:</strong> {{ email }}</p>
+                        <p class="card-text"><strong>Real Name:</strong> {{ real_name }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ location }}</p>
+                        <p class="card-text"><strong>About Me:</strong> {{ about_me }}</p>
+                        <p class="card-text"><strong>Member Since:</strong> {{ member_since }}</p>
+                        <p class="card-text"><strong>Last Seen:</strong> {{ last_seen }}</p>
+                        <a href="{{ url_for('edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+                        <a href="{{ url_for('logout') }}" class="btn btn-danger ml">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

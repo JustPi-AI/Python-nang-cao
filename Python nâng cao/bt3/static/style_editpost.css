@@ -1,0 +1,109 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #1b1e2d; /* Màu nền tối */
+    color: #ffffff; /* Chữ màu trắng */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container for content */
+.container {
+    background-color: #252a41; /* Màu nền container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+    width: 80%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    color: #f1c40f; /* Màu vàng giống header */
+    margin-bottom: 20px;
+}
+
+/* Form Input Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #bbbbbb; /* Màu chữ nhạt */
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #40476d;
+    border-radius: 4px;
+    background-color: #303552; /* Màu nền tối cho các input */
+    color: #ffffff; /* Chữ trong input là màu trắng */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus effect */
+input[type="text"]:focus, textarea:focus {
+    border-color: #f1c40f; /* Màu vàng khi focus */
+    outline: none;
+}
+
+/* Button Styling */
+button[type="submit"] {
+    background-color: #b31b1b; /* Màu nền đỏ */
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #9c1616; /* Màu đỏ đậm khi hover */
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: #6c757d; /* Màu xám cho nút quay lại */
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Màu xám đậm khi hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    button[type="submit"], .btn-secondary {
+        width: 100%;
+    }
+}

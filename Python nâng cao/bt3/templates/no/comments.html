@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments for {{ post.title }}</title>
+    <!-- Import Bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_comment.css') }}">
+    <style>
+        /* Styling for the avatar image */
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Makes the avatar circular */
+            margin-right: 10px; /* Space between avatar and text */
+            vertical-align: middle;
+        }
+        /* Styling for each comment container */
+        .comment-container {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+        }
+        /* Styling for the post author information container */
+        .post-author-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Space below the post author */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Display post title -->
+        <h2>{{ post.title }}</h2>
+
+        <!-- Post author information with avatar and username -->
+        <div class="post-author-container">
+            {% if post.user.avatar %}
+                <img src="{{ url_for('static', filename=post.user.avatar.split('/')[-1]) }}" alt="Post Author Avatar" class="avatar">
+            {% else %}
+                <img src="{{ url_for('static', filename='default_avatar.png') }}" alt="Default Avatar" class="avatar">
+            {% endif %}
+            <strong>Posted by {{ post.user.username }}</strong>&nbsp;on {{ post.timestamp.strftime('%B %d, %Y') }}
+        </div>
+
+        <!-- Display post content -->
+        <p>{{ post.content }}</p>
+
+        <!-- Back to Blog button -->
+        <a href="{{ url_for('blog') }}" class="btn btn-secondary mb-4">Back to Blog</a>
+
+        <!-- Comments section title -->
+        <h3>Comments</h3>
+
+        <!-- Form to add a new comment -->
+        <form method="POST" class="mb-4">
+            <div class="form-group">
+                <textarea class="form-control" name="content" rows="3" required placeholder="Add your comment..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+
+        <!-- List of comments -->
+        <div class="list-group mb-4">
+            {% for comment in comments.items %}
+                <div class="list-group-item comment-container">
+                    <!-- Display user's avatar or default avatar if none -->
+                    {% if comment.user.avatar %}
+                        <img src="{{ url_for('static', filename=comment.user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='default_avatar.png') }}" alt="Default Avatar" class="avatar">
+                    {% endif %}
+
+                    <!-- Display username, timestamp, and comment content -->
+                    <div>
+                        <strong>{{ comment.user.username }}</strong> 
+                        <small class="text-muted">{{ comment.timestamp.strftime('%B %d, %Y %I:%M %p') }}</small>
+                        <p>{{ comment.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination for comments -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if comments.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('comments', post_id=post.id, page=comments.prev_num) }}">Previous</a>
+                    </li>
+                {% endif %}
+                
+                <!-- Page number links -->
+                {% for page_num in range(1, comments.pages + 1) %}
+                    <li class="page-item {% if page_num == comments.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('comments', post_id=post.id, page=page_num) }}">{{ page_num }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if comments.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('comments', post_id=post.id, page=comments.next_num) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

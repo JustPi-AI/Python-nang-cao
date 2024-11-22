@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderate Comments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .comment-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Moderate Comments</h2>
+        <p class="text-muted">Review comments awaiting approval or delete inappropriate content.</p>
+
+        <!-- Check if there are any comments to moderate -->
+        {% if comments_to_moderate %}
+            <div class="list-group">
+                {% for comment in comments_to_moderate %}
+                    <div class="list-group-item comment-container">
+                        {% if comment.user.avatar %}
+                            <img src="{{ url_for('static', filename=comment.user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar">
+                        {% else %}
+                            <img src="{{ url_for('static', filename='default_avatar.png') }}" alt="Default Avatar" class="avatar">
+                        {% endif %}
+                        <div>
+                            <strong>{{ comment.user.username }}</strong> <small class="text-muted">{{ comment.timestamp.strftime('%B %d, %Y %I:%M %p') }}</small>
+                            <p>{{ comment.content }}</p>
+                            
+                            <!-- Approve and Delete Buttons -->
+                            <form action="{{ url_for('approve_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                            <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">No comments pending moderation.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

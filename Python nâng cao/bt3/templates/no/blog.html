@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_blog.css') }}">
+
+    <style>
+        .avatar {
+            width: 50px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+            border-radius: 50%; /* Make it circular */
+            margin-right: 15px; /* Space between avatar and text */
+        }
+        .post-container {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+        }
+        .post-content {
+            flex: 1; /* Take the remaining space */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Create a New Blog Post</h2>
+        <form method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Post</button>
+        </form>
+
+        <h3>Blog Posts</h3>
+        <div class="mb-3">
+            <a href="{{ url_for('blog') }}" class="btn btn-secondary {% if request.endpoint == 'blog' %}active{% endif %}">All</a>
+            <a href="{{ url_for('followed') }}" class="btn btn-secondary {% if request.endpoint == 'followed' %}active{% endif %}">Followed</a>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary {% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+        </div>
+
+        <div class="list-group">
+            {% for post in posts.items %}
+                <div class="list-group-item post-container">
+                    {% if post.user.avatar %}
+                        <img src="{{ url_for('static', filename=post.user.avatar.split('/')[-1]) }}" alt="Avatar" class="avatar">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='default_avatar.png') }}" alt="Default Avatar" class="avatar">
+                    {% endif %}
+                    <div class="post-content">
+                        <a href="{{ url_for('comments', post_id=post.id) }}" class="post-title">
+                            {{ post.title }}
+                        </a>
+                        <div>
+                            <!-- Show first 5 words of the post content -->
+                            <p>{{ post.content.split()[:5]|join(' ') }}...</p>
+                            <small>Posted by {{ post.user.username }} on {{ post.timestamp.strftime('%B %d, %Y') }}</small>
+                            {% if current_user.is_authenticated and post.user_id == current_user.id %}
+                                <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-sm btn-warning mt-2">Edit</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="list-group-item">
+                    <p>No blog posts available.</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if posts.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for(request.endpoint, page=posts.prev_num) }}">Previous</a>
+                    </li>
+                {% endif %}
+                {% for page_num in range(1, posts.pages + 1) %}
+                    <li class="page-item {% if page_num == posts.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for(request.endpoint, page=page_num) }}">{{ page_num }}</a>
+                    </li>
+                {% endfor %}
+                {% if posts.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for(request.endpoint, page=posts.next_num) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

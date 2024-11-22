@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #1b1e2d;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Form Container Styling */
+.form-container {
+    background-color: #252a41;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Heading Styling */
+.form-container h2 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Input and Label Styling */
+label {
+    color: #f1c40f;
+    font-size: 14px;
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #40476d;
+    border-radius: 5px;
+    background-color: #303552;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #f1c40f;
+}
+
+/* Button Styling */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #b31b1b;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f1c40f;
+}
+
+/* Flash Message Styling */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+li {
+    color: #f1c40f;
+    font-size: 14px;
+}
+
+/* Link Styling */
+.form-container p {
+    margin-top: 15px;
+    color: #bbbbbb;
+}
+
+.form-container a {
+    color: #f1c40f;
+    text-decoration: none;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flasky - Unconfirmed Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('profile') }}">Flasky</a>
+        <a class="navbar-nav ml-auto" href="{{ url_for('logout') }}">Log Out</a>
+    </nav>
+    <div class="container">
+        <div class="jumbotron mt-4">
+            <h1 class="display-4">Hello, {{ username }}!</h1>
+            <p class="lead">You have not confirmed your account yet.</p>
+            <hr class="my-4">
+            <p>Before you can access this site, you need to confirm your account. Check your inbox for an email with a confirmation link.</p>
+        </div>
+    </div>
+</body>
+</html>
